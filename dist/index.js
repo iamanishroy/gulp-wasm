@@ -1,1 +1,33 @@
-const Transform=require("stream").Transform,compiler=require("webassembly/cli/compiler"),fs=require("fs"),path=require("path");function buildWasm(n="c_cpp",c="wasm"){var s=new Transform({objectMode:!0});return s._transform=function(e,s,r){console.log(e.path);var o="./"+c,i=null,t=e;fs.existsSync(o)||fs.mkdirSync(o,!0);var a=e.path.split("\\").pop().split("/").pop().split(".")[0],l=(null===(l=e.path.split(n)[1])||void 0===l?void 0:l.split(a)[0])||"";let p=path.resolve(o+l,a+".wasm");fs.existsSync(o+l)||fs.mkdirSync(o+l,{recursive:!0}),compiler.main(["-o",p,e.path],function(s,r){s?i=s:console.log(e.path+" saved to: "+p)}),r(i,t)},s}module.exports=buildWasm;
+const Transform = require("stream").Transform;
+const compiler = require("webassembly/cli/compiler");
+const fs = require("fs");
+const path = require("path");
+function buildWasm(source_dir = "c_cpp", dest_dir = "wasm") {
+    var transformStream = new Transform({ objectMode: true });
+    transformStream._transform = function (file, _encoding, callback) {
+        var _a;
+        console.log(file.path);
+        var dir = "./" + dest_dir;
+        var error = null, output = file;
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, true);
+        }
+        let fileName = file.path.split("\\").pop().split("/").pop().split(".")[0];
+        let subDir = ((_a = file.path.split(source_dir)[1]) === null || _a === void 0 ? void 0 : _a.split(fileName)[0]) || "";
+        let dest = path.resolve(dir + subDir, fileName + ".wasm");
+        if (!fs.existsSync(dir + subDir)) {
+            fs.mkdirSync(dir + subDir, { recursive: true });
+        }
+        compiler.main(["-o", dest, file.path], function (err, filename) {
+            if (err) {
+                error = err;
+            }
+            else {
+                console.log(file.path + " saved to: " + dest);
+            }
+        });
+        callback(error, output);
+    };
+    return transformStream;
+}
+module.exports = buildWasm;

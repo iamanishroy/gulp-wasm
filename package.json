@@ -8,7 +8,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "gulp ts",
+    "build": "tsc",
     "dev": "gulp start",
     "build:wasm": "gulp build-wasm",
     "test:local": "gulp test-local",
