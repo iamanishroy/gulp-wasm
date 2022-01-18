@@ -1,18 +1,29 @@
 {
   "name": "gulp-wasm",
   "version": "1.0.0",
-  "description": "JavaScript wrapper for ego-ws",
+  "description": "Gulp plugin for wasm",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
+  "keywords": [
+    "gulpplugin",
+    "wasm",
+    "WebAssembly",
+    "gulp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iamanishroy/gulp-wasm.git"
+  },
+  "homepage": "https://github.com/iamanishroy/gulp-wasm#readme",
+  "bugs": "https://github.com/iamanishroy/gulp-wasm/issues",
   "scripts": {
     "build": "tsc",
-    "dev": "gulp start",
     "build:wasm": "gulp build-wasm",
-    "test:local": "gulp test-local",
-    "test": "node test.js"
+    "dev": "gulp start",
+    "test": "gulp test-local"
   },
   "author": "Anish Roy",
   "license": "MIT",
@@ -21,9 +32,7 @@
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
-    "typescript": "^4.5.4"
-  },
-  "dependencies": {
+    "typescript": "^4.5.4",
     "webassembly": "^0.11.0"
   }
 }
