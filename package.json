@@ -1,7 +1,7 @@
 {
   "name": "gulp-wasm",
-  "version": "1.0.0",
-  "description": "Gulp plugin for wasm",
+  "version": "1.0.1",
+  "description": "gulp-wasm is a gulp plugin to automates building wasm files from `c` and `c++` files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
