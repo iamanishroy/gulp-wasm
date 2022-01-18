@@ -11,7 +11,8 @@
     "build": "gulp ts",
     "dev": "gulp start",
     "build:wasm": "gulp build-wasm",
-    "test": "gulp test"
+    "test:local": "gulp test-local",
+    "test": "node test.js"
   },
   "author": "Anish Roy",
   "license": "MIT",

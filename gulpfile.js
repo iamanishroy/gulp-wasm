@@ -33,6 +33,6 @@ gulp.task('test-wasm', function () {
 });
 
 
-gulp.task('test', gulp.series('ts', 'build-wasm', 'test-wasm'));
+gulp.task('test-local', gulp.series('ts', 'build-wasm', 'test-wasm'));
 
 
