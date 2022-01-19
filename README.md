@@ -13,9 +13,12 @@ const gulp = require("gulp");
 const buildWasm = require("gulp-wasm");
 
 gulp.task("build-wasm", function () {
-  return gulp
-    .src(["c_cpp/**/*.c"])
-    .pipe(buildWasm("c_cpp").on("error", () => {}));
+  return gulp.src(["./c_cpp/**/*.c", "./c_cpp/**/*.cpp"]).pipe(
+    buildWasm({
+      optimize: true,
+      quiet: true,
+    })
+  );
 });
 ```
 

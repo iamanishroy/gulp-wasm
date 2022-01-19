@@ -29,4 +29,4 @@ declare const flags: {
     link: string;
 };
 declare function processOptions(options: options): string[];
-declare function buildWasm(options: options): any;
+declare function buildWasm(options?: options): any;

@@ -69,7 +69,7 @@ function processOptions(options: options): string[] {
   }
   return flaggedOptions;
 }
-function buildWasm(options: options) {
+function buildWasm(options: options = {}) {
   var args = processOptions(options);
 
   options.sourceDir = options.sourceDir || "c_cpp";
