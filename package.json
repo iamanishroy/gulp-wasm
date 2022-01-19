@@ -1,6 +1,6 @@
 {
   "name": "gulp-wasm",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "gulp-wasm is a gulp plugin to automates building wasm files from `c` and `c++` files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,18 +20,21 @@
   "homepage": "https://github.com/iamanishroy/gulp-wasm#readme",
   "bugs": "https://github.com/iamanishroy/gulp-wasm/issues",
   "scripts": {
-    "build": "tsc",
-    "build:wasm": "gulp build-wasm",
-    "dev": "gulp start",
-    "test": "gulp test-local"
+    "build": "gulp build",
+    "start": "gulp start",
+    "test": "node test/test.js"
   },
   "author": "Anish Roy",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^17.0.9",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-read": "^1.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
+    "itay-gulp-changed": "^1.2.0",
+    "merge2": "^1.4.1",
     "typescript": "^4.5.4"
   },
   "dependencies": {

@@ -1,1 +1,32 @@
-
+declare const Transform: any;
+declare const compiler: any;
+declare const fs: any;
+declare const path: any;
+declare type options = {
+    sourceDir?: string;
+    destDir?: string;
+    optimize?: boolean;
+    quiet?: boolean;
+    debug?: boolean;
+    bare?: boolean;
+    stack?: string;
+    main?: string;
+    define?: string;
+    headers?: string;
+    include?: string;
+    link?: string;
+};
+declare const flags: {
+    optimize: string;
+    quiet: string;
+    debug: string;
+    bare: string;
+    stack: string;
+    main: string;
+    define: string;
+    headers: string;
+    include: string;
+    link: string;
+};
+declare function processOptions(options: options): string[];
+declare function buildWasm(options: options): any;

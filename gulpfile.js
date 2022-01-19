@@ -1,38 +1,47 @@
-const gulp = require('gulp');
+"use strict";
+const gulp = require("gulp");
 const ts = require('gulp-typescript');
+const del = require("del");
+const merge = require("merge2");
+const read = require("gulp-read");
 const uglify = require('gulp-uglify');
-const wasmBuild = require('./dist/index');
 
+const paths = {
+    tsconfig: "./src/tsconfig.json",
+    tsGlob: "./src/**/*.ts",
+    dest: "./dist",
+};
 
-gulp.task('ts', function () {
-    return gulp.src('src/**/*.ts')
-        .pipe(ts({
-            noImplicitAny: false,
-            module: "commonjs",
-            target: "es2016",
-            // declaration: true,
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+gulp.task("build", function () {
+    let tsProject = ts.createProject(paths.tsconfig, { declaration: true });
+
+    let tsResult = gulp.src(paths.tsGlob, { read: false })
+        .pipe(read())
+        .pipe(tsProject());
+
+    tsResult.on("error", () => {
+        changed.reset();
+        throw "Typescript build failed.";
+    });
+
+    return merge([
+        tsResult.dts
+            .pipe(gulp.dest(paths.dest)),
+        tsResult.js
+            .pipe(uglify())
+            .pipe(gulp.dest(paths.dest))
+    ]);
 });
+
+// gulp.task("clean", function () {
+//     return del([
+//         "./.localStorage"
+//     ]);
+// });
 
 gulp.task('watch', function () {
-    gulp.watch('src/**/*.ts', gulp.series('ts'));
+    gulp.watch('src/**/*.ts', gulp.series('build'));
 });
 
-gulp.task('start', gulp.series('ts', 'watch'));
-
-// test tasks
-gulp.task('build-wasm', function () {
-    return gulp.src(['test/**/*.c'])
-        .pipe(wasmBuild('c', 'test/wasm').on('error', () => { }))
-});
-
-gulp.task('test-wasm', function () {
-    gulp.watch('test/**/*.c', gulp.series('build-wasm'));
-});
-
-
-gulp.task('test-local', gulp.series('ts', 'build-wasm', 'test-wasm'));
-
+gulp.task('start', gulp.series('build', 'watch'));
 

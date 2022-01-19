@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "ES6",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  }
+}
