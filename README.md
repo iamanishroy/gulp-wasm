@@ -22,7 +22,32 @@ gulp.task("build-wasm", function () {
 });
 ```
 
-**Click [here](https://github.com/iamanishroy/gulp-wasm/blob/main/gulpfile.js#L26) for more examples.**
+### Options
+
+| **key** | **type** | **description**                     |
+| ------- | -------- | ----------------------------------- |
+| debug   | boolean  | Prints debug information to stderr. |
+| quiet   | boolean  | Suppresses informatory output.      |
+
+**Module configuration:**
+
+| **key**  | **description**                                 |
+| -------- | ----------------------------------------------- |
+| optimize | Optimizes the output file and removes dead code |
+| stack    | Specifies the stack size. Defaults to 10000     |
+| main     | Executes the specified function on load         |
+| define   | Defines a macro                                 |
+
+**Includes and libraries:**
+
+| **key** | **description**                                    |
+| ------- | -------------------------------------------------- |
+| headers | Includes C headers from the specified directories  |
+| include | Includes the specified source files                |
+| link    | Links in the specified libraries after compilation |
+| bare    | Does not include the runtime library               |
+
+<!-- **Click [here](https://github.com/iamanishroy/gulp-wasm/blob/main/gulpfile.js#L26) for more examples.** -->
 
 ## Support
 
